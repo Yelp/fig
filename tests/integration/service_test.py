@@ -98,7 +98,7 @@ class ServiceTest(DockerClientTestCase):
         service = self.create_service('db', volumes=['/var/db'])
         container = service.create_container()
         service.start_container(container)
-        self.assertIn('/var/db', container.inspect()['Volumes'])
+        self.assertIn('/var/db', container.get('Volumes'))
 
     def test_create_container_with_cpu_shares(self):
         service = self.create_service('db', cpu_shares=73)
